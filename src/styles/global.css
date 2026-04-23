@@ -345,6 +345,11 @@ body {
   .project-row > div {
     order: 0 !important;
   }
+
+  .skill-card {
+    grid-column: 1 !important;
+    width: 100% !important;
+  }
 }
 
 /* Commerly project gets an inverted neutral treatment in light theme */

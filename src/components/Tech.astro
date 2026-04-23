@@ -37,13 +37,13 @@ const getIcon = (icon: string) => {
       Technologies & <span class="text-accent">Skills</span>
     </h2>
 
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4.5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-3 md:gap-4.5 px-0 md:px-0">
       {SKILLS.map((skill, i) => (
         (() => {
           const Icon = getIcon(skill.icon);
           return (
             <div
-              class="skill-card relative cursor-default border-[1.5px] border-border bg-bg-elevated"
+              class="skill-card relative cursor-default border-[1.5px] border-border bg-bg-elevated w-full"
               data-index={i}
               style={{
                 '--card-color': skill.color,
