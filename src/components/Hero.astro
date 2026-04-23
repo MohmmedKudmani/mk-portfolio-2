@@ -1,0 +1,143 @@
+---
+const TECH = [
+  { name: 'React', icon: '/icons/react.svg', color: '#61DAFB', x: -280, y: -120, z: 60, size: 56 },
+  { name: 'Next.js', icon: '/icons/nextjs.svg', color: '#FFFFFF', x: 260, y: -140, z: 40, size: 52 },
+  { name: 'TypeScript', icon: '/icons/typescript.svg', color: '#3178C6', x: -320, y: 60, z: -30, size: 48, preserveOriginal: true },
+  { name: 'Node.js', icon: '/icons/nodejs.svg', color: '#68A063', x: 300, y: 80, z: -20, size: 50 },
+  { name: 'Git', icon: '/icons/git.svg', color: '#F05032', x: -180, y: 160, z: 50, size: 44 },
+  { name: 'Tailwind CSS', icon: '/icons/tailwindcss.svg', color: '#06B6D4', x: 160, y: 170, z: 30, size: 46 },
+  { name: 'Redux', icon: '/icons/redux.svg', color: '#764ABC', x: -380, y: -20, z: -40, size: 42 },
+];
+---
+
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden p-6 pt-25 pb-16 perspective-distant">
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <div id="hero-glow-orb" class="absolute z-0 h-200 w-200 -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(252,158,3,.1)_0%,transparent_60%)] blur-[80px]" style="left:50%;top:50%;"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(252,158,3,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(252,158,3,.04)_1px,transparent_1px)] bg-size-[60px_60px] mask-[radial-gradient(ellipse_50%_40%_at_50%_50%,black_20%,transparent_70%)] [-webkit-mask-image:radial-gradient(ellipse_50%_40%_at_50%_50%,black_20%,transparent_70%)]"></div>
+  </div>
+
+  <div id="hero-tech-cloud" class="pointer-events-none absolute top-1/2 left-1/2 z-1 h-0 w-0 transform-3d">
+    {TECH.map((tech, index) => {
+      const scale = 0.85 + ((tech.z + 60) / 200) * 0.3;
+      const opacity = Math.min(1, Math.max(0, 0.4 + ((tech.z + 60) / 120) * 0.6));
+      const iconColor = tech.name === 'Next.js' ? 'var(--nextjs-icon-color)' : tech.color;
+
+      return (
+        <div
+          class="hero-tech-card floating-tech-card absolute top-1/2 left-1/2 flex items-center justify-center rounded-[14px] border backdrop-blur-md"
+          data-float-index={index}
+          data-base-x={tech.x}
+          data-base-y={tech.y}
+          data-base-z={tech.z}
+          data-base-scale={scale}
+          style={{
+            width: `${tech.size}px`,
+            height: `${tech.size}px`,
+            opacity,
+            transform: `translate3d(${tech.x}px, ${tech.y}px, ${tech.z}px) scale(${scale})`,
+            background: `${tech.color}12`,
+            borderColor: `${tech.color}30`,
+            boxShadow: `0 8px 32px ${tech.color}20`,
+          }}
+        >
+          {tech.preserveOriginal ? (
+            <img
+              src={tech.icon}
+              alt={tech.name}
+              loading="lazy"
+              width={Math.round(tech.size * 0.58)}
+              height={Math.round(tech.size * 0.58)}
+              class="pointer-events-none select-none object-contain"
+              style="width:58%;height:58%;"
+            />
+          ) : (
+            <span
+              aria-hidden="true"
+              class="pointer-events-none block select-none bg-current"
+              style={{
+                width: '58%',
+                height: '58%',
+                color: iconColor,
+                WebkitMaskImage: `url('${tech.icon}')`,
+                maskImage: `url('${tech.icon}')`,
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+                maskPosition: 'center',
+                filter: 'drop-shadow(0 0 6px currentColor)',
+              }}
+            />
+          )}
+        </div>
+      );
+    })}
+  </div>
+
+  <div id="hero-content" class="relative z-20 max-w-200 text-center" style="transform-style:preserve-3d;transition:transform 200ms ease-out;">
+    <div class="reveal mb-7 inline-flex items-center gap-2 rounded-full border border-[rgba(252,158,3,.15)] bg-[rgba(252,158,3,.08)] px-4.5 py-2 backdrop-blur" style="transition-delay:200ms">
+      <div class="h-2 w-2 rounded-full bg-accent shadow-[0_0_8px_rgba(252,158,3,.5)]"></div>
+      <span class="text-sm font-medium font-body text-accent">Senior Full Stack Engineer</span>
+    </div>
+
+    <h1 class="reveal mb-5 text-4xl leading-tight font-display font-bold tracking-[-0.04em] md:text-6xl lg:text-7xl" style="transition-delay:400ms">
+      <span class="text-accent block">Mohammed</span>
+      <span class="text-text">Kudmani</span>
+    </h1>
+
+    <div class="reveal inline-flex items-center gap-2.5 mb-5" style="transition-delay:550ms">
+      <div class="h-px w-10 bg-accent/40"></div>
+      <span class="text-sm font-semibold font-body text-muted uppercase tracking-widest">Senior Full Stack Engineer</span>
+      <div class="h-px w-10 bg-accent/40"></div>
+    </div>
+
+    <p class="reveal mx-auto mb-9 max-w-lg text-base leading-relaxed font-body text-muted md:text-lg" style="transition-delay:650ms">
+      Over 4 years building full-stack SaaS products — AI-powered platforms, no-code builders, and e-commerce systems that solve real business problems.
+    </p>
+
+    <div class="reveal mb-12 flex flex-wrap justify-center gap-3.5" style="transition-delay:800ms">
+      <span data-magnetic="0.12" style="display:inline-flex;">
+        <a
+          href="#projects"
+          class="inline-flex items-center gap-2 px-8 py-3.75 rounded-full font-semibold font-body text-sm border-2 border-accent bg-accent text-white cursor-pointer no-underline transition-[background-color,border-color,box-shadow] duration-250 hover:bg-accent-hover hover:border-accent-hover hover:shadow-[0_8px_30px_rgba(252,158,3,0.35)]"
+        >
+          View Projects
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </span>
+      <span data-magnetic="0.12" style="display:inline-flex;">
+        <a
+          href="#contact"
+          class="inline-flex items-center px-8 py-3.75 rounded-full font-semibold font-body text-sm bg-transparent border-2 border-border-light cursor-pointer text-text no-underline transition-[color,border-color] duration-250 hover:text-accent hover:border-accent"
+        >
+          Contact Me
+        </a>
+      </span>
+    </div>
+
+    <div class="reveal mt-14 flex flex-wrap justify-center gap-10" style="transition-delay:1000ms">
+      <div class="text-center">
+        <div class="text-2xl font-bold font-display text-accent">4+</div>
+        <div class="text-xs font-medium font-body text-muted mt-0.5">Years Experience</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold font-display text-accent">10+</div>
+        <div class="text-xs font-medium font-body text-muted mt-0.5">Projects Built</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold font-display text-accent">2+</div>
+        <div class="text-xs font-medium font-body text-muted mt-0.5">SaaS Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="scroll-indicator" class="reveal absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="transition-delay:1100ms">
+    <span class="text-xs font-medium font-body text-muted uppercase tracking-widest">Scroll</span>
+    <div class="flex h-9.5 w-6 justify-center rounded-xl border-2 border-border-light pt-1.5">
+      <div class="h-2 w-0.75 animate-[scrollDot_2s_ease-in-out_infinite] rounded-full bg-accent"></div>
+    </div>
+  </div>
+</section>

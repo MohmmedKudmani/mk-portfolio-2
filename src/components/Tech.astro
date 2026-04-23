@@ -1,0 +1,75 @@
+---
+import { Atom, Code, Server, GitBranch, Palette, Bolt, LayoutGrid } from '@lucide/astro';
+
+const SKILLS = [
+  { title: 'React & Next.js', icon: 'reactnext', color: '#61DAFB', span: 2, tags: ['SSR', 'SSG', 'API Routes', 'App Router', 'SEO'], desc: 'Architected full frontend structures for SaaS platforms — server rendering, static generation, scalable component systems.' },
+  { title: 'AI & RAG', icon: 'bolt', color: '#6366F1', span: 1, tags: ['OpenAI', 'RAG Pipelines', 'Context Eng.', 'AI Agents'], desc: 'Integrating AI into products — building RAG pipelines, AI marketing engines, and agent workflows using OpenAI API.' },
+  { title: 'TypeScript', icon: 'typescript', color: '#3178C6', span: 1, tags: ['Generics', 'Utility Types', 'Strict Mode'], desc: 'Type-safe code that scales — catching bugs at compile time across large SaaS codebases.' },
+  { title: 'State Management', icon: 'bolt', color: '#764ABC', span: 1, tags: ['Redux', 'ReactQuery', 'Valtio', 'Context'], desc: 'Server state & client state from basics to advanced — applied across multiple production SaaS products.' },
+  { title: 'Node.js & Backend', icon: 'server', color: '#68A063', span: 1, tags: ['Express', 'REST APIs', 'Stripe', 'GraphQL'], desc: 'Building APIs, subscription billing infrastructure, and full-stack systems end-to-end.' },
+  { title: 'UI Engineering', icon: 'palette', color: '#FC9E03', span: 1, tags: ['Tailwind', 'Mantine', 'CSS-in-JS', 'Animations'], desc: 'Pixel-perfect interfaces with responsive design, smooth animations, and accessible components.' },
+  { title: 'Version Control', icon: 'git', color: '#F05032', span: 1, tags: ['Git', 'GitHub', 'CI/CD'], desc: 'Clean commit history, branching strategies, and automated deployment pipelines.' },
+  { title: 'Responsive Design', icon: 'layout', color: '#06B6D4', span: 1, tags: ['Mobile-first', 'Flex', 'Grid', 'Breakpoints'], desc: 'Layouts that look great on every device — applied consistently across all production projects.' },
+];
+
+const getIcon = (icon: string) => {
+  const icons: Record<string, any> = {
+    code: Code,
+    reactnext: Atom,
+    typescript: Code,
+    palette: Palette,
+    bolt: Bolt,
+    server: Server,
+    git: GitBranch,
+    layout: LayoutGrid,
+  };
+  return icons[icon] ?? Code;
+};
+---
+
+<section id="skills" class="section-shell bg-bg-alt">
+  <div class="absolute -top-30 -right-30 w-96 h-96 rounded-full border border-orange-500/5 pointer-events-none"></div>
+  <div class="absolute -bottom-25 -left-25 w-87.5 h-87.5 rounded-full border border-orange-500/3 pointer-events-none"></div>
+
+  <div class="mx-auto max-w-5xl">
+    <p class="reveal mb-2 font-body text-sm font-semibold tracking-[0.08em] text-accent uppercase">What I Do</p>
+    <h2 class="reveal mb-12 text-[clamp(32px,5vw,48px)] leading-[1.1] font-display font-bold tracking-[-0.02em] text-text" style="transition-delay:80ms">
+      Technologies & <span class="text-accent">Skills</span>
+    </h2>
+
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4.5">
+      {SKILLS.map((skill, i) => (
+        (() => {
+          const Icon = getIcon(skill.icon);
+          return (
+            <div
+              class="skill-card relative cursor-default border-[1.5px] border-border bg-bg-elevated"
+              data-index={i}
+              style={{
+                '--card-color': skill.color,
+                gridColumn: skill.span === 2 ? 'span 2' : 'span 1',
+                borderRadius: '20px',
+                padding: '26px 24px',
+                transitionDelay: `${i * 70}ms`,
+              } as any}
+            >
+              <div class="skill-glow absolute -top-10 -left-10 w-30 h-30 rounded-full blur-2xl pointer-events-none"></div>
+              <div class="skill-icon w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: `${skill.color}15` }}>
+                <Icon size={22} color={skill.color} stroke-width={1.75} />
+              </div>
+              <h3 class="font-display text-lg font-semibold mb-2 relative text-text">{skill.title}</h3>
+              <p class="font-body text-sm text-muted leading-relaxed mb-3.5 relative">{skill.desc}</p>
+              <div class="flex flex-wrap gap-1.5 relative">
+                {skill.tags.map((tag) => (
+                  <span class="text-xs font-semibold font-body px-3 py-1 rounded-full text-text" style={{ background: `${skill.color}12` }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()
+      ))}
+    </div>
+  </div>
+</section>

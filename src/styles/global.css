@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* Dark mode via html.dark class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ————— Brand tokens as Tailwind utilities ————— */
+@theme {
+  --font-display: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  --color-accent: #fc9e03;
+  --color-accent-hover: #c97e03;
+  --color-accent-soft: rgba(252, 158, 3, 0.2);
+
+  --color-bg-dark: #232534;
+  --color-bg-light: #fdfdfd;
+  --color-bg-elevated-dark: #292b3d;
+  --color-bg-elevated-light: #f0f0f5;
+  --color-bg-alt-dark: #1a1b2e;
+  --color-bg-alt-light: #f5f5f7;
+
+  --color-fg-dark: #ffffff;
+  --color-fg-light: #000000;
+  --color-muted-dark: #7e7faf;
+  --color-muted-light: #52577a;
+
+  --color-primary-0: #f0f0f5;
+  --color-primary-1: #d4d6e2;
+  --color-primary-2: #b9bcd0;
+  --color-primary-3: #9da1bd;
+  --color-primary-4: #8287ab;
+  --color-primary-5: #676c98;
+  --color-primary-6: #52577a;
+  --color-primary-7: #3e415b;
+  --color-primary-8: #292b3d;
+  --color-primary-9: #15161e;
+
+  --color-orange-0: #fff5e6;
+  --color-orange-1: #fee4b8;
+  --color-orange-2: #fed28b;
+  --color-orange-3: #fdc15e;
+  --color-orange-4: #fcaf31;
+  --color-orange-5: #fc9e03;
+  --color-orange-6: #c97e03;
+  --color-orange-7: #975f02;
+  --color-orange-8: #653f01;
+  --color-orange-9: #322001;
+
+  --color-success: #12b886;
+  --color-danger: #fa5252;
+
+  /* Semantic aliases for utility classes */
+  --color-bg: #fdfdfd;
+  --color-bg-alt: #f5f5f7;
+  --color-bg-elevated: #f0f0f5;
+  --color-input-bg: #ffffff;
+  --color-text: #000000;
+  --color-muted: #52577a;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-light: rgba(0, 0, 0, 0.12);
+}
+
+/* ————— Fonts ————— */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Poppins-300.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Poppins-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Poppins-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Poppins-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Poppins-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Inter-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Inter-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Inter-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Inter-700.woff2") format("woff2");
+}
+
+/* ————— Base ————— */
+html {
+  scroll-behavior: auto;
+}
+
+:root {
+  --color-bg: #fdfdfd;
+  --color-bg-alt: #f5f5f7;
+  --color-bg-elevated: #f0f0f5;
+  --color-input-bg: #ffffff;
+  --color-text: #000;
+  --color-muted: #52577a;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-light: rgba(0, 0, 0, 0.12);
+  --border-color: rgba(0, 0, 0, 0.06);
+  --mobile-menu-bg: rgba(255, 255, 255, 0.98);
+  --nextjs-card-bg: rgba(0, 0, 0, 0.14);
+  --nextjs-card-border: rgba(0, 0, 0, 0.38);
+  --nextjs-card-shadow: rgba(0, 0, 0, 0.24);
+  --nextjs-icon-color: #000;
+  color-scheme: light;
+}
+
+.dark {
+  --color-bg: #232534;
+  --color-bg-alt: #1a1b2e;
+  --color-bg-elevated: #292b3d;
+  --color-input-bg: #3e415b;
+  --color-text: #fff;
+  --color-muted: #7e7faf;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-light: rgba(255, 255, 255, 0.15);
+  --border-color: rgba(255, 255, 255, 0.06);
+  --mobile-menu-bg: rgba(35, 37, 52, 0.96);
+  --nextjs-card-bg: rgba(255, 255, 255, 0.12);
+  --nextjs-card-border: rgba(255, 255, 255, 0.35);
+  --nextjs-card-shadow: rgba(255, 255, 255, 0.2);
+  --nextjs-icon-color: #fff;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    background-color 400ms ease,
+    color 400ms ease;
+}
+
+/* ————— Scrollbar ————— */
+::-webkit-scrollbar {
+  width: 10px;
+}
+:root ::-webkit-scrollbar-track {
+  background: #fdfdfd;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #232534;
+}
+::-webkit-scrollbar-thumb {
+  background: #fc9e03;
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c97e03;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ————— Selection ————— */
+::selection {
+  background: rgba(252, 158, 3, 0.25);
+  color: inherit;
+}
+
+/* ————— Scroll animations ————— */
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+@keyframes scrollDot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.3;
+  }
+}
+
+/* ————— Reveal animation ————— */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@layer components {
+  .section-shell {
+    @apply relative overflow-hidden px-6 py-28;
+  }
+
+  .surface-card {
+    @apply border border-border bg-bg-elevated;
+  }
+
+  .contact-info-card {
+    @apply flex cursor-pointer items-center gap-3.5 rounded-xl border border-border bg-bg-elevated px-4 py-3.5 transition-all duration-250 hover:translate-x-1.5 hover:border-[rgba(252,158,3,0.3)];
+  }
+
+  .form-input {
+    @apply w-full box-border rounded-[10px] border-[1.5px] border-border-light bg-input-bg px-4 py-3.5 font-body text-sm text-text outline-none transition-all duration-200 focus:border-accent focus:shadow-[0_0_0_3px_rgba(252,158,3,0.15)];
+  }
+}
+
+.skill-card {
+  will-change: transform, opacity;
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition: all 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-card.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.skill-card.in-view:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 20px;
+  border: 1.5px solid color-mix(in srgb, var(--card-color) 40%, transparent);
+  box-shadow:
+    0 16px 40px color-mix(in srgb, var(--card-color) 12%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--card-color) 15%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-card.in-view:hover::before {
+  opacity: 1;
+}
+
+.skill-glow {
+  background: color-mix(in srgb, var(--card-color) 12%, transparent);
+  opacity: 0.5;
+  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-card.in-view:hover .skill-glow {
+  opacity: 1;
+}
+
+.skill-icon {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-card.in-view:hover .skill-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.floating-tech-card {
+  will-change: transform;
+}
+
+#hero-glow-orb {
+  transition: left 1.5s ease-out, top 1.5s ease-out;
+}
+
+.tilt-3d {
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ————— Project rows responsive ————— */
+@media (max-width: 768px) {
+  .project-row {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .project-row > div {
+    order: 0 !important;
+  }
+}
+
+/* Commerly project gets an inverted neutral treatment in light theme */
+html:not(.dark) [data-project="commerly"] .tilt-3d {
+  border-color: rgba(0, 0, 0, 0.44) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.21) !important;
+}
+
+html:not(.dark) [data-project="commerly"] .commerly-num {
+  color: rgba(0, 0, 0, 0.13) !important;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.25) !important;
+}
+
+html:not(.dark) [data-project="commerly"] .commerly-tag {
+  background: rgba(0, 0, 0, 0.15) !important;
+}
