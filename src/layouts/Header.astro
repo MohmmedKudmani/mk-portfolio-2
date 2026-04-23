@@ -22,7 +22,8 @@ const mobileDelayClasses = ['[.is-open_&]:delay-[40ms]', '[.is-open_&]:delay-[80
   <nav class="relative z-130 flex items-center justify-between max-w-5xl mx-auto">
     <!-- Logo -->
     <div class="flex items-center gap-1.5 cursor-pointer" id="logo-btn">
-      <img src="/assets/mk-logo.png" id="logo-img" width={42} height={42} alt="MK logo" class="rounded-full transition-all duration-300" />
+      <img src="/assets/mk-logo-light.svg" alt="MK logo" class="logo-img block dark:hidden transition-all duration-300" width={42} height={42} />
+      <img src="/assets/mk-logo-dark.svg" alt="MK logo" class="logo-img hidden dark:block transition-all duration-300" width={42} height={42} />
     </div>
 
     <!-- Desktop Nav -->
@@ -81,7 +82,7 @@ const mobileDelayClasses = ['[.is-open_&]:delay-[40ms]', '[.is-open_&]:delay-[80
   const themeToggle = document.getElementById('theme-toggle');
   const burgerBtn = document.getElementById('burger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  const logoImg = document.getElementById('logo-img') as HTMLImageElement | null;
+  const logoImgs = Array.from(document.querySelectorAll<HTMLImageElement>('.logo-img'));
   const bars = Array.from(document.querySelectorAll<HTMLElement>('.burger-bar'));
 
   let menuOpen = false;
@@ -134,10 +135,10 @@ const mobileDelayClasses = ['[.is-open_&]:delay-[40ms]', '[.is-open_&]:delay-[80
   function syncHeaderOnScroll() {
     const scrolled = window.scrollY > 60;
     header?.classList.toggle('scrolled', scrolled);
-    if (logoImg) {
-      logoImg.style.width = scrolled ? '36px' : '42px';
-      logoImg.style.height = scrolled ? '36px' : '42px';
-    }
+    logoImgs.forEach((img) => {
+      img.style.width = scrolled ? '36px' : '42px';
+      img.style.height = scrolled ? '36px' : '42px';
+    });
   }
 
   window.addEventListener('scroll', syncHeaderOnScroll, { passive: true });
