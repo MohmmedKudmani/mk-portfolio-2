@@ -236,7 +236,6 @@ body {
   transition:
     opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
 }
 
 .reveal.reveal-visible {
@@ -244,6 +243,14 @@ body {
   transform: translateY(0);
 }
 
+/* ————— 3D context utilities ————— */
+.perspective-distant {
+  perspective: 1200px;
+}
+
+.transform-3d {
+  transform-style: preserve-3d;
+}
 
 @layer components {
   .section-shell {
@@ -280,7 +287,7 @@ body {
 }
 
 .skill-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -1.5px;
   border-radius: 20px;
@@ -320,7 +327,9 @@ body {
 }
 
 #hero-glow-orb {
-  transition: left 1.5s ease-out, top 1.5s ease-out;
+  transition:
+    left 1.5s ease-out,
+    top 1.5s ease-out;
 }
 
 .tilt-3d {
@@ -352,3 +361,4 @@ html:not(.dark) [data-project="commerly"] .commerly-num {
 html:not(.dark) [data-project="commerly"] .commerly-tag {
   background: rgba(0, 0, 0, 0.15) !important;
 }
+

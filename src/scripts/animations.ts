@@ -1,4 +1,4 @@
-import Lenis from 'lenis';
+import Lenis from "lenis";
 
 declare global {
   interface Window {
@@ -7,7 +7,7 @@ declare global {
 }
 
 function prefersReducedMotion(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 export function initLenis(): void {
@@ -25,12 +25,12 @@ export function initLenis(): void {
 
 /* ——— Scroll reveals: up (default), left, right ——— */
 export function initReveal(): void {
-  const elements = document.querySelectorAll<HTMLElement>('.reveal');
+  const elements = document.querySelectorAll<HTMLElement>(".reveal");
 
   if (prefersReducedMotion()) {
     elements.forEach((el) => {
-      el.style.opacity = '1';
-      el.style.transform = 'translate3d(0,0,0)';
+      el.style.opacity = "1";
+      el.style.transform = "translate3d(0,0,0)";
     });
     return;
   }
@@ -38,8 +38,8 @@ export function initReveal(): void {
   // Set directional initial transform via inline style (higher specificity wins on reveal)
   elements.forEach((el) => {
     const dir = el.dataset.revealDir;
-    if (dir === 'left') el.style.transform = 'translateX(40px)';
-    else if (dir === 'right') el.style.transform = 'translateX(-40px)';
+    if (dir === "left") el.style.transform = "translateX(40px)";
+    else if (dir === "right") el.style.transform = "translateX(-40px)";
     // 'up' uses CSS class default (translateY(28px))
   });
 
@@ -49,14 +49,14 @@ export function initReveal(): void {
         if (entry.isIntersecting) {
           const el = entry.target as HTMLElement;
           // Set final state inline so it overrides any directional inline transform
-          el.style.opacity = '1';
-          el.style.transform = 'translate3d(0,0,0)';
-          el.classList.add('reveal-visible');
+          el.style.opacity = "1";
+          el.style.transform = "translate3d(0,0,0)";
+          el.classList.add("reveal-visible");
           obs.unobserve(el);
         }
       });
     },
-    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' },
+    { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
   );
 
   elements.forEach((el) => obs.observe(el));
@@ -65,8 +65,8 @@ export function initReveal(): void {
 /* ——— Skill cards: combined reveal + hover state via .in-view class ——— */
 export function initSkillCards(): void {
   if (prefersReducedMotion()) {
-    document.querySelectorAll<HTMLElement>('.skill-card').forEach((el) => {
-      el.classList.add('in-view');
+    document.querySelectorAll<HTMLElement>(".skill-card").forEach((el) => {
+      el.classList.add("in-view");
     });
     return;
   }
@@ -75,7 +75,7 @@ export function initSkillCards(): void {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          (entry.target as HTMLElement).classList.add('in-view');
+          (entry.target as HTMLElement).classList.add("in-view");
           obs.unobserve(entry.target);
         }
       });
@@ -83,20 +83,23 @@ export function initSkillCards(): void {
     { threshold: 0.12 },
   );
 
-  document.querySelectorAll<HTMLElement>('.skill-card').forEach((el) => obs.observe(el));
+  document
+    .querySelectorAll<HTMLElement>(".skill-card")
+    .forEach((el) => obs.observe(el));
 }
 
 /* ——— Hero ambient: floating cards + glow orb + content 3D parallax ——— */
 export function initHeroAmbient(): void {
   if (prefersReducedMotion()) return;
 
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('.hero-tech-card'));
-  const orb = document.getElementById('hero-glow-orb');
-  const content = document.getElementById('hero-content');
+  const cards = Array.from(
+    document.querySelectorAll<HTMLElement>(".hero-tech-card"),
+  );
+  const orb = document.getElementById("hero-glow-orb");
   const mouse = { x: 0.5, y: 0.5 };
 
   window.addEventListener(
-    'mousemove',
+    "mousemove",
     (e) => {
       mouse.x = e.clientX / window.innerWidth;
       mouse.y = e.clientY / window.innerHeight;
@@ -111,10 +114,10 @@ export function initHeroAmbient(): void {
     const t = (now - start) / 1000;
 
     cards.forEach((card, i) => {
-      const baseX = parseFloat(card.dataset.baseX ?? '0');
-      const baseY = parseFloat(card.dataset.baseY ?? '0');
-      const baseZ = parseFloat(card.dataset.baseZ ?? '0');
-      const baseScale = parseFloat(card.dataset.baseScale ?? '1');
+      const baseX = parseFloat(card.dataset.baseX ?? "0");
+      const baseY = parseFloat(card.dataset.baseY ?? "0");
+      const baseZ = parseFloat(card.dataset.baseZ ?? "0");
+      const baseScale = parseFloat(card.dataset.baseScale ?? "1");
       const floatY = Math.sin(t * 0.8 + i * 1.2) * 12;
       const rotY = Math.sin(t * 0.5 + i) * 5;
       const mx = (mouse.x - 0.5) * 40 * (i % 2 === 0 ? 1 : -0.7);
@@ -127,13 +130,6 @@ export function initHeroAmbient(): void {
       orb.style.top = `${mouse.y * 100}%`;
     }
 
-    // Subtle 3D parallax on hero content block (matches design system)
-    if (content) {
-      const mx = (mouse.x - 0.5) * 8;
-      const my = (mouse.y - 0.5) * 5;
-      content.style.transform = `rotateY(${mx * 0.2}deg) rotateX(${-my * 0.2}deg)`;
-    }
-
     requestAnimationFrame(tick);
   }
 
@@ -144,29 +140,32 @@ export function initHeroAmbient(): void {
 export function initMagnetic(): void {
   if (prefersReducedMotion()) return;
 
-  document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
-    const strength = parseFloat(el.dataset.magnetic ?? '0.3');
+  document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach((el) => {
+    const strength = parseFloat(el.dataset.magnetic ?? "0.3");
     let cx = 0;
     let cy = 0;
 
-    el.addEventListener('mouseenter', () => {
+    el.addEventListener("mouseenter", () => {
       // Reset transform before reading rect so we get the true original position
-      el.style.transition = 'none';
-      el.style.transform = 'translate3d(0,0,0)';
+      el.style.transition = "none";
+      el.style.transform = "translate3d(0,0,0)";
+      el.style.cursor = "pointer";
       const rect = el.getBoundingClientRect();
       cx = rect.left + rect.width / 2;
       cy = rect.top + rect.height / 2;
     });
 
-    el.addEventListener('mousemove', (e) => {
+    el.addEventListener("mousemove", (e) => {
+      el.style.cursor = "pointer";
       const x = (e.clientX - cx) * strength;
       const y = (e.clientY - cy) * strength;
       el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     });
 
-    el.addEventListener('mouseleave', () => {
-      el.style.transition = 'transform 400ms cubic-bezier(0.22, 1, 0.36, 1)';
-      el.style.transform = 'translate3d(0,0,0)';
+    el.addEventListener("mouseleave", () => {
+      el.style.cursor = "auto";
+      el.style.transition = "transform 400ms cubic-bezier(0.22, 1, 0.36, 1)";
+      el.style.transform = "translate3d(0,0,0)";
     });
   });
 }
@@ -175,8 +174,8 @@ export function initMagnetic(): void {
 export function initProjectTilt(): void {
   if (prefersReducedMotion()) return;
 
-  document.querySelectorAll<HTMLElement>('.tilt-3d').forEach((card) => {
-    const glare = card.querySelector<HTMLElement>('.tilt-glare');
+  document.querySelectorAll<HTMLElement>(".tilt-3d").forEach((card) => {
+    const glare = card.querySelector<HTMLElement>(".tilt-glare");
 
     const onMove = (e: MouseEvent): void => {
       const rect = card.getBoundingClientRect();
@@ -186,18 +185,19 @@ export function initProjectTilt(): void {
       const rotX = (y - 0.5) * -8;
       card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02,1.02,1.02)`;
       if (glare) {
-        glare.style.opacity = '1';
+        glare.style.opacity = "1";
         glare.style.background = `radial-gradient(circle at ${Math.round(x * 100)}% ${Math.round(y * 100)}%, rgba(255,255,255,0.14), transparent 60%)`;
       }
     };
 
     const onLeave = (): void => {
-      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)';
-      if (glare) glare.style.opacity = '0';
+      card.style.transform =
+        "perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)";
+      if (glare) glare.style.opacity = "0";
     };
 
-    card.addEventListener('mousemove', onMove);
-    card.addEventListener('mouseleave', onLeave);
+    card.addEventListener("mousemove", onMove);
+    card.addEventListener("mouseleave", onLeave);
   });
 }
 
@@ -209,3 +209,4 @@ export function initAnimations(): void {
   initMagnetic();
   initProjectTilt();
 }
+
