@@ -1,12 +1,22 @@
 ---
 interface Props {
-  size?: number;
-  color?: string;
+  size?: number
+  color?: string
 }
 
-const { size = 24, color = '#3178C6' } = Astro.props;
+const { size = 24, color = '#3178C6' } = Astro.props
 ---
-<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
-  <rect x="8" y="8" width="48" height="48" rx="8" fill={color} />
-  <path d="M18 26h20v4h-8v18h-4V30h-8v-4Zm24.6 22c-4.8 0-7.8-2.5-8.2-6.2h4.2c.3 1.7 1.8 2.8 4 2.8 2.1 0 3.4-.9 3.4-2.3 0-1.2-.8-1.9-3-2.4l-2.2-.5c-3.7-.8-5.6-2.6-5.6-5.6 0-3.4 2.8-5.9 7-5.9 4.3 0 7 2.3 7.3 5.8h-4.1c-.3-1.5-1.5-2.4-3.3-2.4s-3 .9-3 2.2c0 1.1.8 1.8 2.9 2.3l2.2.5c4.1.9 5.8 2.6 5.8 5.6 0 3.8-2.8 6.1-7.4 6.1Z" fill="#FFFFFF" />
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  fill="none"
+  aria-hidden="true"
+>
+  <rect x="8" y="8" width="48" height="48" rx="8" fill={color}></rect>
+  <path
+    d="M18 26h20v4h-8v18h-4V30h-8v-4Zm24.6 22c-4.8 0-7.8-2.5-8.2-6.2h4.2c.3 1.7 1.8 2.8 4 2.8 2.1 0 3.4-.9 3.4-2.3 0-1.2-.8-1.9-3-2.4l-2.2-.5c-3.7-.8-5.6-2.6-5.6-5.6 0-3.4 2.8-5.9 7-5.9 4.3 0 7 2.3 7.3 5.8h-4.1c-.3-1.5-1.5-2.4-3.3-2.4s-3 .9-3 2.2c0 1.1.8 1.8 2.9 2.3l2.2.5c4.1.9 5.8 2.6 5.8 5.6 0 3.8-2.8 6.1-7.4 6.1Z"
+    fill="#FFFFFF"></path>
 </svg>

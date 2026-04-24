@@ -35,6 +35,7 @@ Layout (SEO shell, theme init, scroll-progress bar)
 **`src/styles/global.css`** is the single source of truth for the design system. Brand tokens (colors, fonts) are declared as Tailwind `@theme` variables. Dark mode is driven by the `.dark` class on `<html>` (toggled via `localStorage`). Semantic color aliases (`--color-bg`, `--color-text`, etc.) update at the root when `.dark` is present.
 
 **`src/scripts/animations.ts`** exports one entry point `initAnimations()` called from `Layout.astro`. It wires up:
+
 - `initLenis()` — smooth scroll
 - `initReveal()` — IntersectionObserver scroll reveals; add class `reveal` to any element, optionally `data-reveal-dir="left|right"`
 - `initSkillCards()` — adds `.in-view` class to `.skill-card` elements on scroll

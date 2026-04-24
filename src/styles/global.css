@@ -1,12 +1,12 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Dark mode via html.dark class */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ————— Brand tokens as Tailwind utilities ————— */
 @theme {
-  --font-display: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
   --color-accent: #fc9e03;
   --color-accent-hover: #c97e03;
@@ -62,67 +62,67 @@
 
 /* ————— Fonts ————— */
 @font-face {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url("/fonts/Poppins-300.woff2") format("woff2");
+  src: url('/fonts/Poppins-300.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Poppins-400.woff2") format("woff2");
+  src: url('/fonts/Poppins-400.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("/fonts/Poppins-500.woff2") format("woff2");
+  src: url('/fonts/Poppins-500.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("/fonts/Poppins-600.woff2") format("woff2");
+  src: url('/fonts/Poppins-600.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/Poppins-700.woff2") format("woff2");
+  src: url('/fonts/Poppins-700.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Inter-400.woff2") format("woff2");
+  src: url('/fonts/Inter-400.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("/fonts/Inter-500.woff2") format("woff2");
+  src: url('/fonts/Inter-500.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("/fonts/Inter-600.woff2") format("woff2");
+  src: url('/fonts/Inter-600.woff2') format('woff2');
 }
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/Inter-700.woff2") format("woff2");
+  src: url('/fonts/Inter-700.woff2') format('woff2');
 }
 
 /* ————— Base ————— */
@@ -258,15 +258,15 @@ body {
   }
 
   .surface-card {
-    @apply border border-border bg-bg-elevated;
+    @apply border-border bg-bg-elevated border;
   }
 
   .contact-info-card {
-    @apply flex cursor-pointer items-center gap-3.5 rounded-xl border border-border bg-bg-elevated px-4 py-3.5 transition-all duration-250 hover:translate-x-1.5 hover:border-[rgba(252,158,3,0.3)];
+    @apply border-border bg-bg-elevated flex cursor-pointer items-center gap-3.5 rounded-xl border px-4 py-3.5 transition-all duration-250 hover:translate-x-1.5 hover:border-[rgba(252,158,3,0.3)];
   }
 
   .form-input {
-    @apply w-full box-border rounded-[10px] border-[1.5px] border-border-light bg-input-bg px-4 py-3.5 font-body text-sm text-text outline-none transition-all duration-200 focus:border-accent focus:shadow-[0_0_0_3px_rgba(252,158,3,0.15)];
+    @apply border-border-light bg-input-bg font-body text-text focus:border-accent box-border w-full rounded-[10px] border-[1.5px] px-4 py-3.5 text-sm transition-all duration-200 outline-none focus:shadow-[0_0_0_3px_rgba(252,158,3,0.15)];
   }
 }
 
@@ -287,7 +287,7 @@ body {
 }
 
 .skill-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: -1.5px;
   border-radius: 20px;
@@ -353,17 +353,16 @@ body {
 }
 
 /* Commerly project gets an inverted neutral treatment in light theme */
-html:not(.dark) [data-project="commerly"] .tilt-3d {
+html:not(.dark) [data-project='commerly'] .tilt-3d {
   border-color: rgba(0, 0, 0, 0.44) !important;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.21) !important;
 }
 
-html:not(.dark) [data-project="commerly"] .commerly-num {
+html:not(.dark) [data-project='commerly'] .commerly-num {
   color: rgba(0, 0, 0, 0.13) !important;
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.25) !important;
 }
 
-html:not(.dark) [data-project="commerly"] .commerly-tag {
+html:not(.dark) [data-project='commerly'] .commerly-tag {
   background: rgba(0, 0, 0, 0.15) !important;
 }
-

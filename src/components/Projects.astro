@@ -1,10 +1,15 @@
 ---
+import { Image } from 'astro:assets'
+import commerly from '../assets/projects/commerly.png'
+import digitalSite from '../assets/projects/digitalSite.png'
+import b2bKorea from '../assets/projects/b2b-korea.png'
+
 const PROJECTS = [
   {
     title: 'Commerly',
     desc: 'AI-powered SaaS platform for e-commerce brand owners. Built an AI marketing playbook engine with OpenAI and RAG pipelines, full Stripe billing infrastructure, and owned the entire Next.js frontend architecture.',
     tech: ['Next.js', 'TypeScript', 'OpenAI', 'RAG', 'Stripe', 'Redux'],
-    image: '/assets/projects/commerly.png',
+    image: commerly,
     color: '#FFFFFF',
     num: '01',
   },
@@ -12,7 +17,7 @@ const PROJECTS = [
     title: 'Digitalsite',
     desc: 'No-code SaaS funnel builder enabling businesses to create conversion-optimized websites without code. Built a drag-and-drop editor with 25+ customizable elements and a dynamic SEO layer for published pages.',
     tech: ['Next.js', 'React DND', 'TypeScript', 'Redux', 'SEO'],
-    image: '/assets/projects/digitalSite.png',
+    image: digitalSite,
     color: '#10B981',
     num: '02',
   },
@@ -20,110 +25,133 @@ const PROJECTS = [
     title: 'B2B Korea',
     desc: 'B2B platform connecting Korean suppliers with global buyers. Boosted supplier sales by 24% and visibility by 33% through a modern storefront and supplier-facing dashboard.',
     tech: ['React.js', 'Astro.js', 'TypeScript'],
-    image: '/assets/projects/b2b-korea.png',
+    image: b2bKorea,
     color: '#3B82F6',
     num: '03',
   },
-];
+]
 ---
 
-<section id="projects" class="section-shell">
-  <div class="mx-auto max-w-5xl">
-    <p class="reveal mb-2 font-body text-sm font-semibold tracking-[0.08em] text-accent uppercase">Portfolio</p>
-    <h2 class="reveal mb-15 text-[clamp(32px,5vw,48px)] leading-[1.1] font-display font-bold tracking-[-0.02em] text-text" style="transition-delay:80ms">
-      Featured <span class="text-accent">Projects</span>
+<section id='projects' class='section-shell'>
+  <div class='mx-auto max-w-5xl'>
+    <p
+      class='reveal font-body text-accent mb-2 text-sm font-semibold tracking-[0.08em] uppercase'
+    >
+      Portfolio
+    </p>
+    <h2
+      class='reveal font-display text-text mb-15 text-[clamp(32px,5vw,48px)] leading-[1.1] font-bold tracking-[-0.02em]'
+      style='transition-delay:80ms'
+    >
+      Featured <span class='text-accent'>Projects</span>
     </h2>
 
-    {PROJECTS.map((p, i) => {
-      // Odd rows: image right, text left → text slides from left (data-reveal-dir="right")
-      // Even rows: image left, text right → text slides from right (data-reveal-dir="left")
-      const textDir = i % 2 === 1 ? 'right' : 'left';
-      return (
-      <div
-        class="project-row reveal mb-20"
-        data-index={i}
-        data-project={p.title.toLowerCase().replace(/\s+/g, '-')}
-        style={{
-          display: 'grid',
-          gridTemplateColumns: i % 2 === 1 ? '1fr 1.2fr' : '1.2fr 1fr',
-          gap: '40px',
-          alignItems: 'center',
-          transitionDelay: `${i * 80}ms`,
-        }}
-      >
-        <div style={{ order: i % 2 === 1 ? 2 : 1 }}>
+    {
+      PROJECTS.map((p, i) => {
+        // Odd rows: image right, text left → text slides from left (data-reveal-dir="right")
+        // Even rows: image left, text right → text slides from right (data-reveal-dir="left")
+        const textDir = i % 2 === 1 ? 'right' : 'left'
+        return (
           <div
-            class="group relative overflow-hidden tilt-3d"
+            class='project-row reveal mb-20'
+            data-index={i}
+            data-project={p.title.toLowerCase().replace(/\s+/g, '-')}
             style={{
-              borderRadius: '20px',
-              border: `2px solid ${p.color}${p.color === '#FFFFFF' ? '38' : '70'}`,
-              boxShadow: `0 20px 60px ${p.color}15`,
-              cursor: 'pointer',
-              transform: 'perspective(800px)',
-              transformStyle: 'preserve-3d',
+              display: 'grid',
+              gridTemplateColumns: i % 2 === 1 ? '1fr 1.2fr' : '1.2fr 1fr',
+              gap: '40px',
+              alignItems: 'center',
+              transitionDelay: `${i * 80}ms`,
             }}
           >
-            {p.image ? (
-              <img src={p.image} alt={p.title} class="w-full h-auto block" loading="lazy" />
-            ) : (
+            <div style={{ order: i % 2 === 1 ? 2 : 1 }}>
               <div
-                class="w-full h-full flex items-center justify-center"
+                class='group tilt-3d relative overflow-hidden'
                 style={{
-                  background: `linear-gradient(135deg, ${p.color}15, ${p.color}05)`,
-                  fontSize: '64px',
-                  fontWeight: 700,
-                  fontFamily: 'Poppins, sans-serif',
-                  color: `${p.color}30`,
+                  borderRadius: '20px',
+                  border: `2px solid ${p.color}${p.color === '#FFFFFF' ? '38' : '70'}`,
+                  boxShadow: `0 20px 60px ${p.color}15`,
+                  cursor: 'pointer',
+                  transform: 'perspective(800px)',
+                  transformStyle: 'preserve-3d',
                 }}
               >
-                {p.title[0]}
+                {p.image ? (
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    class='block h-auto w-full'
+                    widths={[400, 760, 1120]}
+                    sizes='(max-width: 768px) 100vw, 55vw'
+                    loading='lazy'
+                    format='webp'
+                  />
+                ) : (
+                  <div
+                    class='flex h-full w-full items-center justify-center'
+                    style={{
+                      background: `linear-gradient(135deg, ${p.color}15, ${p.color}05)`,
+                      fontSize: '64px',
+                      fontWeight: 700,
+                      fontFamily: 'Poppins, sans-serif',
+                      color: `${p.color}30`,
+                    }}
+                  >
+                    {p.title[0]}
+                  </div>
+                )}
+                <div class='tilt-glare pointer-events-none absolute inset-0 rounded-[20px] bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0),transparent_60%)] opacity-0 transition-opacity duration-300' />
               </div>
-            )}
-            <div class="tilt-glare absolute inset-0 rounded-[20px] pointer-events-none opacity-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0),transparent_60%)] transition-opacity duration-300"></div>
-          </div>
-        </div>
+            </div>
 
-        <div style={{ order: i % 2 === 1 ? 1 : 2 }}>
-          <span
-            class={`reveal block font-display text-7xl font-black${p.title === 'Commerly' ? ' commerly-num' : ''}`}
-            data-reveal-dir={textDir}
-            style={{
-              color: `${p.color}20`,
-              lineHeight: 1,
-              marginBottom: '-5px',
-              WebkitTextStroke: `1px ${p.color}40`,
-              transitionDelay: '150ms',
-            } as any}
-          >
-            {p.num}
-          </span>
-          <h3
-            class="reveal font-display text-3xl md:text-4xl font-bold mb-3 leading-tight text-text"
-            data-reveal-dir={textDir}
-            style={{ transitionDelay: '200ms' }}
-          >{p.title}</h3>
-          <p
-            class="reveal font-body text-sm text-muted leading-relaxed mb-5"
-            data-reveal-dir={textDir}
-            style={{ transitionDelay: '260ms' }}
-          >{p.desc}</p>
-          <div
-            class="reveal flex flex-wrap gap-1.5 mb-5"
-            data-reveal-dir={textDir}
-            style={{ transitionDelay: '310ms' }}
-          >
-            {p.tech.map((t) => (
+            <div style={{ order: i % 2 === 1 ? 1 : 2 }}>
               <span
-                class={`text-xs font-semibold font-body px-3 py-1 rounded-full text-text${p.title === 'Commerly' ? ' commerly-tag' : ''}`}
-                style={{ background: `${p.color}25` }}
+                class={`reveal font-display block text-7xl font-black${p.title === 'Commerly' ? ' commerly-num' : ''}`}
+                data-reveal-dir={textDir}
+                style={
+                  {
+                    color: `${p.color}20`,
+                    lineHeight: 1,
+                    marginBottom: '-5px',
+                    WebkitTextStroke: `1px ${p.color}40`,
+                    transitionDelay: '150ms',
+                  } as any
+                }
               >
-                {t}
+                {p.num}
               </span>
-            ))}
+              <h3
+                class='reveal font-display text-text mb-3 text-3xl leading-tight font-bold md:text-4xl'
+                data-reveal-dir={textDir}
+                style={{ transitionDelay: '200ms' }}
+              >
+                {p.title}
+              </h3>
+              <p
+                class='reveal font-body text-muted mb-5 text-sm leading-relaxed'
+                data-reveal-dir={textDir}
+                style={{ transitionDelay: '260ms' }}
+              >
+                {p.desc}
+              </p>
+              <div
+                class='reveal mb-5 flex flex-wrap gap-1.5'
+                data-reveal-dir={textDir}
+                style={{ transitionDelay: '310ms' }}
+              >
+                {p.tech.map((t) => (
+                  <span
+                    class={`font-body rounded-full px-3 py-1 text-xs font-semibold text-text${p.title === 'Commerly' ? ' commerly-tag' : ''}`}
+                    style={{ background: `${p.color}25` }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      );
-    })}
+        )
+      })
+    }
   </div>
 </section>

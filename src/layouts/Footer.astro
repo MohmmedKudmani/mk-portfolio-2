@@ -1,25 +1,42 @@
 ---
-import XIcon from '../components/icons/XIcon.astro';
-import GitHubIcon from '../components/icons/GitHubIcon.astro';
-import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
+import XIcon from '../components/icons/XIcon.astro'
+import GitHubIcon from '../components/icons/GitHubIcon.astro'
+import LinkedInIcon from '../components/icons/LinkedInIcon.astro'
 ---
 
-<footer class="border-t border-border px-6 py-10">
-  <div class="mx-auto flex max-w-5xl flex-col md:flex-row md:items-center md:justify-between gap-4 items-center justify-center">
-    <span class="font-body text-xs text-muted">
+<footer class="border-border border-t px-6 py-10">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center justify-center gap-4 md:flex-row md:items-center md:justify-between"
+  >
+    <span class="font-body text-muted text-xs">
       © {new Date().getFullYear()} Mohammed Kudmani
     </span>
     <div class="flex gap-2">
-      <a href="https://twitter.com/MohmmedKudmani" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
-        class="w-10 h-10 rounded-full flex items-center justify-center bg-transparent no-underline transition-all duration-250 text-muted hover:text-accent hover:bg-[rgba(252,158,3,0.08)]">
-        <XIcon size={20}/>
+      <a
+        href="https://twitter.com/MohmmedKudmani"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Twitter"
+        class="text-muted hover:text-accent flex h-10 w-10 items-center justify-center rounded-full bg-transparent no-underline transition-all duration-250 hover:bg-[rgba(252,158,3,0.08)]"
+      >
+        <XIcon size={20} />
       </a>
-      <a href="https://github.com/MohmmedKudmani" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
-        class="w-10 h-10 rounded-full flex items-center justify-center bg-transparent no-underline transition-all duration-250 text-muted hover:text-accent hover:bg-[rgba(252,158,3,0.08)]">
-        <GitHubIcon size={24}/>
+      <a
+        href="https://github.com/MohmmedKudmani"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        class="text-muted hover:text-accent flex h-10 w-10 items-center justify-center rounded-full bg-transparent no-underline transition-all duration-250 hover:bg-[rgba(252,158,3,0.08)]"
+      >
+        <GitHubIcon size={24} />
       </a>
-      <a href="https://www.linkedin.com/in/mohammed-kudmani" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-        class="w-10 h-10 rounded-full flex items-center justify-center bg-transparent no-underline transition-all duration-250 text-muted hover:text-accent hover:bg-[rgba(252,158,3,0.08)]">
+      <a
+        href="https://www.linkedin.com/in/mohammed-kudmani"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="text-muted hover:text-accent flex h-10 w-10 items-center justify-center rounded-full bg-transparent no-underline transition-all duration-250 hover:bg-[rgba(252,158,3,0.08)]"
+      >
         <LinkedInIcon />
       </a>
     </div>

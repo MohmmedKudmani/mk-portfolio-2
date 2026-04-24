@@ -1,146 +1,205 @@
 ---
-import { Moon, Sun } from '@lucide/astro';
+import { Moon, Sun } from '@lucide/astro'
 
 const NAV_LINKS = [
   { id: 'home', label: 'Home' },
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
-];
+]
 
 const desktopLinkClass =
-  'text-muted text-[15px] font-medium font-body px-4 py-2 rounded-full cursor-pointer transition-all duration-250 no-underline bg-transparent hover:text-accent hover:bg-[rgba(252,158,3,0.08)]';
+  'text-muted text-[15px] font-medium font-body px-4 py-2 rounded-full cursor-pointer transition-all duration-250 no-underline bg-transparent hover:text-accent hover:bg-[rgba(252,158,3,0.08)]'
 const mobileLinkBaseClass =
-  'mobile-link block translate-y-3 rounded-full bg-transparent px-6 py-3 font-body text-2xl font-medium text-muted opacity-0 no-underline transition-all duration-250 hover:bg-[rgba(252,158,3,0.08)] hover:text-accent [.is-open_&]:translate-y-0 [.is-open_&]:opacity-100';
-const mobileDelayClasses = ['[.is-open_&]:delay-[40ms]', '[.is-open_&]:delay-[80ms]', '[.is-open_&]:delay-[120ms]', '[.is-open_&]:delay-[160ms]'];
+  'mobile-link block translate-y-3 rounded-full bg-transparent px-6 py-3 font-body text-2xl font-medium text-muted opacity-0 no-underline transition-all duration-250 hover:bg-[rgba(252,158,3,0.08)] hover:text-accent [.is-open_&]:translate-y-0 [.is-open_&]:opacity-100'
+const mobileDelayClasses = [
+  '[.is-open_&]:delay-[40ms]',
+  '[.is-open_&]:delay-[80ms]',
+  '[.is-open_&]:delay-[120ms]',
+  '[.is-open_&]:delay-[160ms]',
+]
 ---
 
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-120 border-b border-b-transparent bg-transparent px-6 py-4.5 transition-all duration-400 ease-out [&.hidden]:-translate-y-full [&.scrolled]:border-b-black/8 [&.scrolled]:bg-white/94 [&.scrolled]:px-6 [&.scrolled]:py-3 [&.scrolled]:backdrop-blur-lg [&.scrolled]:backdrop-saturate-150 dark:[&.scrolled]:border-b-white/6 dark:[&.scrolled]:bg-[rgba(35,37,52,0.85)]"
+  class="fixed top-0 right-0 left-0 z-120 border-b border-b-transparent bg-transparent px-6 py-4.5 transition-all duration-400 ease-out [&.hidden]:-translate-y-full [&.scrolled]:border-b-black/8 [&.scrolled]:bg-white/94 [&.scrolled]:px-6 [&.scrolled]:py-3 [&.scrolled]:backdrop-blur-lg [&.scrolled]:backdrop-saturate-150 dark:[&.scrolled]:border-b-white/6 dark:[&.scrolled]:bg-[rgba(35,37,52,0.85)]"
 >
-  <nav class="relative z-130 flex items-center justify-between max-w-5xl mx-auto">
+  <nav
+    class="relative z-130 mx-auto flex max-w-5xl items-center justify-between"
+  >
     <!-- Logo -->
-    <div class="flex items-center gap-1.5 cursor-pointer" id="logo-btn">
-      <img src="/assets/mk-logo-light.svg" alt="MK logo" class="logo-img block dark:hidden transition-all duration-300" width={42} height={42} />
-      <img src="/assets/mk-logo-dark.svg" alt="MK logo" class="logo-img hidden dark:block transition-all duration-300" width={42} height={42} />
+    <div class="flex cursor-pointer items-center gap-1.5" id="logo-btn">
+      <img
+        src="/assets/mk-logo-light.svg"
+        alt="MK logo"
+        class="logo-img block transition-all duration-300 dark:hidden"
+        width={42}
+        height={42}
+        fetchpriority="high"
+      />
+      <img
+        src="/assets/mk-logo-dark.svg"
+        alt="MK logo"
+        class="logo-img hidden transition-all duration-300 dark:block"
+        width={42}
+        height={42}
+        fetchpriority="high"
+      />
     </div>
 
     <!-- Desktop Nav -->
-    <div class="hidden md:flex gap-1">
-      {NAV_LINKS.map((link) => (
-        <a href={`#${link.id}`} class={desktopLinkClass}>{link.label}</a>
-      ))}
+    <div class="hidden gap-1 md:flex">
+      {
+        NAV_LINKS.map((link) => (
+          <a href={`#${link.id}`} class={desktopLinkClass}>
+            {link.label}
+          </a>
+        ))
+      }
     </div>
 
     <!-- Controls -->
     <div class="flex items-center gap-3">
       <!-- Theme Toggle -->
-      <button id="theme-toggle" class="relative flex h-6.5 w-12 cursor-pointer items-center rounded-full border-none bg-[#D4D6E2] p-0 transition-colors duration-300 dark:bg-accent" aria-label="Toggle theme">
-        <div id="toggle-dot" class="absolute top-0.75 left-[3px] h-5 w-5 rounded-full bg-white text-[#232534] shadow-[0_1px_4px_rgba(0,0,0,.2)] transition-all duration-300 dark:left-[25px] dark:text-accent">
-          <span id="icon-dark" class="absolute inset-0 flex items-center justify-center opacity-0 [transform:rotate(-90deg)_scale(0.5)] transition-all duration-300 dark:opacity-100 dark:[transform:rotate(0deg)_scale(1)]">
+      <button
+        id="theme-toggle"
+        class="dark:bg-accent relative flex h-6.5 w-12 cursor-pointer items-center rounded-full border-none bg-[#D4D6E2] p-0 transition-colors duration-300"
+        aria-label="Toggle theme"
+      >
+        <div
+          id="toggle-dot"
+          class="dark:text-accent absolute top-0.75 left-[3px] h-5 w-5 rounded-full bg-white text-[#232534] shadow-[0_1px_4px_rgba(0,0,0,.2)] transition-all duration-300 dark:left-[25px]"
+        >
+          <span
+            id="icon-dark"
+            class="absolute inset-0 flex [transform:rotate(-90deg)_scale(0.5)] items-center justify-center opacity-0 transition-all duration-300 dark:[transform:rotate(0deg)_scale(1)] dark:opacity-100"
+          >
             <Moon size={11} stroke-width={2} />
           </span>
-          <span id="icon-light" class="absolute inset-0 flex items-center justify-center opacity-100 [transform:rotate(0deg)_scale(1)] transition-all duration-300 dark:opacity-0 dark:[transform:rotate(90deg)_scale(0.5)]">
+          <span
+            id="icon-light"
+            class="absolute inset-0 flex [transform:rotate(0deg)_scale(1)] items-center justify-center opacity-100 transition-all duration-300 dark:[transform:rotate(90deg)_scale(0.5)] dark:opacity-0"
+          >
             <Sun size={11} stroke-width={2} />
           </span>
         </div>
       </button>
 
       <!-- Mobile Burger -->
-      <button id="burger-btn" class="flex md:hidden flex-col gap-1.25 cursor-pointer bg-transparent border-none p-2" aria-label="Toggle menu">
-        <span class="burger-bar h-0.5 w-6 rounded-sm bg-text transition-all duration-300"></span>
-        <span class="burger-bar h-0.5 w-6 rounded-sm bg-text transition-all duration-300"></span>
-        <span class="burger-bar h-0.5 w-6 rounded-sm bg-text transition-all duration-300"></span>
+      <button
+        id="burger-btn"
+        class="flex cursor-pointer flex-col gap-1.25 border-none bg-transparent p-2 md:hidden"
+        aria-label="Toggle menu"
+      >
+        <span
+          class="burger-bar bg-text h-0.5 w-6 rounded-sm transition-all duration-300"
+        ></span>
+        <span
+          class="burger-bar bg-text h-0.5 w-6 rounded-sm transition-all duration-300"
+        ></span>
+        <span
+          class="burger-bar bg-text h-0.5 w-6 rounded-sm transition-all duration-300"
+        ></span>
       </button>
     </div>
   </nav>
-
 </header>
 
 <!-- Mobile Menu Overlay — must be outside <header> to avoid backdrop-blur stacking context breaking fixed positioning on scroll -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-[119] flex translate-y-[-10px] scale-[0.985] flex-col items-center justify-center gap-5 bg-white/98 p-8 opacity-0 invisible pointer-events-none backdrop-blur-[16px] backdrop-saturate-125 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden dark:bg-[rgba(35,37,52,0.96)] [&.is-open]:translate-y-0 [&.is-open]:scale-100 [&.is-open]:opacity-100 [&.is-open]:visible [&.is-open]:pointer-events-auto"
+  class="pointer-events-none invisible fixed inset-0 z-[119] flex translate-y-[-10px] scale-[0.985] flex-col items-center justify-center gap-5 bg-white/98 p-8 opacity-0 backdrop-blur-[16px] backdrop-saturate-125 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden dark:bg-[rgba(35,37,52,0.96)] [&.is-open]:pointer-events-auto [&.is-open]:visible [&.is-open]:translate-y-0 [&.is-open]:scale-100 [&.is-open]:opacity-100"
 >
-  {NAV_LINKS.map((link, index) => (
-    <a href={`#${link.id}`} class={`${mobileLinkBaseClass} ${mobileDelayClasses[index] ?? ''}`}>{link.label}</a>
-  ))}
+  {
+    NAV_LINKS.map((link, index) => (
+      <a
+        href={`#${link.id}`}
+        class={`${mobileLinkBaseClass} ${mobileDelayClasses[index] ?? ''}`}
+      >
+        {link.label}
+      </a>
+    ))
+  }
 </div>
 
 <script>
-  import type Lenis from 'lenis';
+  import type Lenis from 'lenis'
 
   declare global {
     interface Window {
-      __lenis?: Lenis;
+      __lenis?: Lenis
     }
   }
 
-  const header = document.getElementById('site-header');
-  const logoBtn = document.getElementById('logo-btn');
-  const themeToggle = document.getElementById('theme-toggle');
-  const burgerBtn = document.getElementById('burger-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const logoImgs = Array.from(document.querySelectorAll<HTMLImageElement>('.logo-img'));
-  const bars = Array.from(document.querySelectorAll<HTMLElement>('.burger-bar'));
+  const header = document.getElementById('site-header')
+  const logoBtn = document.getElementById('logo-btn')
+  const themeToggle = document.getElementById('theme-toggle')
+  const burgerBtn = document.getElementById('burger-btn')
+  const mobileMenu = document.getElementById('mobile-menu')
+  const logoImgs = Array.from(
+    document.querySelectorAll<HTMLImageElement>('.logo-img'),
+  )
+  const bars = Array.from(document.querySelectorAll<HTMLElement>('.burger-bar'))
 
-  let menuOpen = false;
+  let menuOpen = false
 
   function updateBurgerIcon(open: boolean) {
-    if (bars.length < 3) return;
-    bars[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : 'none';
-    bars[1].style.opacity = open ? '0' : '1';
-    bars[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : 'none';
+    if (bars.length < 3) return
+    bars[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : 'none'
+    bars[1].style.opacity = open ? '0' : '1'
+    bars[2].style.transform = open
+      ? 'rotate(-45deg) translate(5px,-5px)'
+      : 'none'
   }
 
   function setMenuState(open: boolean) {
-    menuOpen = open;
-    mobileMenu?.classList.toggle('is-open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-    updateBurgerIcon(open);
+    menuOpen = open
+    mobileMenu?.classList.toggle('is-open', open)
+    document.body.style.overflow = open ? 'hidden' : ''
+    updateBurgerIcon(open)
   }
 
   function scrollToSection(id: string) {
-    setMenuState(false);
-    const el = document.getElementById(id.toLowerCase());
-    if (!el) return;
-    const offset = -(header?.offsetHeight ?? 80);
+    setMenuState(false)
+    const el = document.getElementById(id.toLowerCase())
+    if (!el) return
+    const offset = -(header?.offsetHeight ?? 80)
     if (window.__lenis) {
-      window.__lenis.scrollTo(el, { offset });
+      window.__lenis.scrollTo(el, { offset })
     } else {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
-  logoBtn?.addEventListener('click', () => scrollToSection('home'));
+  logoBtn?.addEventListener('click', () => scrollToSection('home'))
 
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = (link as HTMLAnchorElement).getAttribute('href')?.slice(1) || '';
-      scrollToSection(id);
-    });
-  });
+      e.preventDefault()
+      const id =
+        (link as HTMLAnchorElement).getAttribute('href')?.slice(1) || ''
+      scrollToSection(id)
+    })
+  })
 
   themeToggle?.addEventListener('click', () => {
-    const root = document.documentElement;
-    const nextDark = !root.classList.contains('dark');
-    root.classList.toggle('dark', nextDark);
-    localStorage.setItem('theme', nextDark ? 'dark' : 'light');
-  });
+    const root = document.documentElement
+    const nextDark = !root.classList.contains('dark')
+    root.classList.toggle('dark', nextDark)
+    localStorage.setItem('theme', nextDark ? 'dark' : 'light')
+  })
 
-  burgerBtn?.addEventListener('click', () => setMenuState(!menuOpen));
+  burgerBtn?.addEventListener('click', () => setMenuState(!menuOpen))
 
   function syncHeaderOnScroll() {
-    const scrolled = window.scrollY > 60;
-    header?.classList.toggle('scrolled', scrolled);
+    const scrolled = window.scrollY > 60
+    header?.classList.toggle('scrolled', scrolled)
     logoImgs.forEach((img) => {
-      img.style.width = scrolled ? '36px' : '42px';
-      img.style.height = scrolled ? '36px' : '42px';
-    });
+      img.style.width = scrolled ? '36px' : '42px'
+      img.style.height = scrolled ? '36px' : '42px'
+    })
   }
 
-  window.addEventListener('scroll', syncHeaderOnScroll, { passive: true });
-  syncHeaderOnScroll();
+  window.addEventListener('scroll', syncHeaderOnScroll, { passive: true })
+  syncHeaderOnScroll()
 </script>
