@@ -13,7 +13,7 @@ const {
   image = '/assets/projects/hero-image.png',
 } = Astro.props;
 
-const siteUrl = Astro.site ?? 'https://mkudmani.dev';
+const siteUrl = Astro.site ?? 'https://mk-portfolio.dev';
 const ogImage = new URL(image, siteUrl).toString();
 
 const jsonLd = JSON.stringify({
