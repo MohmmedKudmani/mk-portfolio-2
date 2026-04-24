@@ -6,7 +6,6 @@ import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 
 import cloudflare from '@astrojs/cloudflare'
-import { sharpImageService } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,14 +15,10 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
 
-  image: {
-    service: sharpImageService(),
-  },
-
   vite: {
     plugins: [tailwindcss()],
   },
 
   integrations: [sitemap()],
-  adapter: cloudflare(),
+  adapter: cloudflare({ imageService: 'compile' }),
 })
